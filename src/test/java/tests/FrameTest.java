@@ -47,6 +47,8 @@ public class FrameTest {
         WebElement secondSampleTextElement = driver.findElement(By.id("sampleHeading"));
         System.out.println(secondSampleTextElement.getText());
 
+        driver.quit();
+
         //tema - nested frame
 
 

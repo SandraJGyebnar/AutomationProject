@@ -93,7 +93,6 @@ public class PracticeFormTest {
             }
         }
 
-
         List<String> hobbiesValues = Arrays.asList("Sports", "Music");
         List<WebElement> hobbiesOptionsList = driver.findElements(By.xpath("//div[@id='hobbiesWrapper']//label[@class='custom-control-label']"));
 
@@ -141,6 +140,7 @@ public class PracticeFormTest {
 
         List<WebElement> lableList = driver.findElements(By.xpath("//table[@class='table table-dark table-striped-borderedt table-hover']//td[1]"));
         List<WebElement> valueList = driver.findElements(By.xpath("//table[@class='table table-dark table-striped-borderedt table-hover']//td[1]"));
+
         Assert.assertEquals(lableList.get(0).getText(),"Student Name");
         Assert.assertEquals(lableList.get(1).getText(),"Student Email");
         Assert.assertEquals(lableList.get(2).getText(),"Gender");
@@ -163,13 +163,7 @@ public class PracticeFormTest {
         Assert.assertEquals(valueList.get(8),currentAddressValue);
         Assert.assertEquals(valueList.get(9),stateValue, cityValue);
 
-
-
-
-
-
-
-
+        driver.close();
 
     }
 

@@ -30,12 +30,13 @@ public class NestedFramesTema {
         WebElement frameSubMenu = driver.findElement(By.xpath("//span[text()='Nested Frames']"));
         js.executeScript("arguments[0].click();", frameSubMenu);
 
-        //ne mutam la iFrame
-        driver.switchTo().parentFrame();
-        WebElement frameDocumentElement = driver.findElement(By.tagName("Parent frame"));
-        System.out.println(frameDocumentElement.getText());
+        driver.switchTo().frame("frame1");
 
-        driver.switchTo();
+        WebElement childFrameElement = driver.findElement(By.tagName("iFrame"));
+        driver.switchTo().frame(childFrameElement);
+
+        WebElement childSampleTextElement = driver.findElement(By.tagName("p"));
+        System.out.println(childSampleTextElement.getText());
 
 
     }

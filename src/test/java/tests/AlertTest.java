@@ -1,5 +1,7 @@
 package tests;
 
+import helpMethods.AlertMethods;
+import helpMethods.ElementMethods;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,6 +26,9 @@ public class AlertTest {
         //wait implicit
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
+        ElementMethods elementMethods = new ElementMethods(driver);
+        AlertMethods alertMethods = new AlertMethods(driver);
+
         WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", alertsFrameWindowsMenu);
@@ -34,39 +39,24 @@ public class AlertTest {
         WebElement okAlertElement = driver.findElement(By.id("alertButton"));
         js.executeScript("arguments[0].click();", okAlertElement);
 
-
-        Alert firstAlert=driver.switchTo().alert();
-        System.out.println(firstAlert.getText());
-        firstAlert.accept();
-
+        alertMethods.acceptAlert();
 
         WebElement timerAlertButtonElement = driver.findElement(By.id("timerAlertButton"));
         js.executeScript("arguments[0].click();", timerAlertButtonElement);
 
-        //wait explicit
-        WebDriverWait waitExplicit = new WebDriverWait(driver, Duration.ofSeconds(10));
-        waitExplicit.until(ExpectedConditions.alertIsPresent());
-
-        Alert secondAlert=driver.switchTo().alert();
-        System.out.println(secondAlert.getText());
-        secondAlert.accept();
+        alertMethods.acceptAlert();
 
         WebElement confirmAlertElement = driver.findElement(By.id("confirmButton"));
         js.executeScript("arguments[0].click();", confirmAlertElement);
 
-        Alert thirdAlert=driver.switchTo().alert();
-        System.out.println(thirdAlert.getText());
-        //thirdAlert.accept();
-        thirdAlert.dismiss();
-
+        alertMethods.dismissAlert();
 
         WebElement promtAlertElement = driver.findElement(By.id("promtButton"));
         js.executeScript("arguments[0].click();", promtAlertElement);
 
-        Alert fourthAlert=driver.switchTo().alert();
-        System.out.println(fourthAlert.getText());
-        fourthAlert.sendKeys("this is a test");
-        fourthAlert.accept();
+        alertMethods.fillAlert("this is a test");
+
+        driver.quit();
 
 
     }
