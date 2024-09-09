@@ -82,6 +82,7 @@ public class PracticeFormTest {
 
 
         WebElement mothElement = driver.findElement(By.className("react-datepicker__month-select"));
+
         Select monthSelect = new Select(mothElement);
         String monthValue = "January";
         monthSelect.selectByVisibleText(monthValue);
@@ -96,7 +97,7 @@ public class PracticeFormTest {
         for (int index = 0; index < daysList.size(); index ++){
             if (daysList.get(index).getText().equals(dayValue)){
 
-                elementMethods.clickElement();
+                elementMethods.clickElement(daysList.get(index));
                 break;
             }
         }

@@ -99,33 +99,31 @@ public class WebTableTest {
 
         WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
         String editeFirstNameValue = "Sandra";
-        editFirstNameElement.clear();
-        elementMethods.fillElement(editFirstNameElement,editeFirstNameValue);
+        elementMethods.clearEditElement(editFirstNameElement,editeFirstNameValue);
 
         WebElement editLastNameElement = driver.findElement(By.id("lastName"));
         String editLastNameValue = "Gyebnar";
-        editFirstNameElement.clear();
-        elementMethods.fillElement(editLastNameElement,editLastNameValue);
+        elementMethods.clearEditElement(editLastNameElement,editLastNameValue);
+
 
         WebElement editEmailElement = driver.findElement(By.id("userEmail"));
         String  editeEmailValue= "gyebnar.sandrajss@yahoo.com";
-        editEmailElement.clear();
-        elementMethods.fillElement(editEmailElement,editeEmailValue);
+        elementMethods.clearEditElement(editEmailElement,editeEmailValue);
 
         WebElement editAgeElement = driver.findElement(By.id("age"));
         String editAgeValue = "20 ";
-        editAgeElement.clear();
-        elementMethods.fillElement(editAgeElement,editAgeValue);
+        elementMethods.clearEditElement(editAgeElement,editAgeValue);
+
 
         WebElement editSalaryElement = driver.findElement(By.id("salary"));
         String editSalaryValue = "100001";
-        editSalaryElement.clear();
-        elementMethods.fillElement(editSalaryElement,editSalaryValue);
+        elementMethods.clearEditElement(editSalaryElement,editSalaryValue);
+
 
         WebElement editDepartmentElement = driver.findElement(By.id("department"));
         String editDepartmentValue = "Testing";
-        editDepartmentElement.clear();
-        elementMethods.fillElement(editDepartmentElement,editDepartmentValue);
+        elementMethods.clearEditElement(editDepartmentElement,editDepartmentValue);
+
 
         WebElement editSubmitElement = driver.findElement(By.id("submit"));
         elementMethods.clickElement(editSubmitElement);
@@ -146,6 +144,7 @@ public class WebTableTest {
         newTableContentList = driver.findElements(By.xpath("//div[@class = 'rt-tbody']/div/div[class = 'rt-tr -odd'"));
         Assert.assertEquals(newTableContentList.size(),3,"Default size for table is not 3");
 
+        driver.quit();
 
     }
 

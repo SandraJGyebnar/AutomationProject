@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -50,6 +51,21 @@ public class ElementMethods {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    public void selectDropDownElement(WebElement element,String text){
+        waitVisibleElement(element);
+        Select select = new Select(element);
+        select.selectByVisibleText(text);
+    }
+
+    public void clearEditElement(WebElement element, String text){
+        waitVisibleElement(element);
+        element.clear();
+        element.sendKeys(text);
+
+    }
+
+
 
 
 
