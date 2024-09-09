@@ -1,5 +1,7 @@
 package tests;
 
+import helpMethods.ElementMethods;
+import helpMethods.TabMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -29,13 +31,15 @@ public class WebTableTest {
 
         //facem Browserul maximaze
         driver.manage().window().maximize();
+        ElementMethods elementMethods = new ElementMethods(driver);
+        TabMethods tabMethods = new TabMethods(driver);
 
         WebElement elementsMenu = driver.findElement(By.xpath("//h5[text()='Elements']"));
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].click();",elementsMenu);
+        elementMethods.clickJSElement(elementsMenu);
 
         WebElement webTablesSubMenu = driver.findElement(By.xpath("//span[text()='Web Tables']"));
-        js.executeScript("arguments[0].click();",webTablesSubMenu);
+        elementMethods.clickJSElement(webTablesSubMenu);
+
 
         //validam dimensiunea initiala a tabelului
         List<WebElement> tableContentList = driver.findElements(By.xpath("//div[@class = 'rt-tbody']/div/div[@class = 'rt-tr -odd' or @class = 'rt-tr -even']"));
@@ -43,34 +47,38 @@ public class WebTableTest {
 
         //definim un element
         WebElement addElement = driver.findElement(By.id("addNewRecordButton"));
-        addElement.click();
+        elementMethods.clickElement(addElement);
+
 
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
         String firstNameValue = "Sandra";
-        firstNameElement.sendKeys(firstNameValue);
+        elementMethods.fillElement(firstNameElement,firstNameValue);
+
 
         WebElement lastNameElement = driver.findElement(By.id("lastName"));
         String lastNameValue = "Gyebnar";
-        lastNameElement.sendKeys(lastNameValue);
+        elementMethods.fillElement(lastNameElement,lastNameValue);
 
         WebElement emailElement = driver.findElement(By.id("userEmail"));
         String emailValue = "gyebnar.sandra@yahoo.com";
-        emailElement.sendKeys(emailValue);
+        elementMethods.fillElement(emailElement,emailValue);
 
         WebElement ageElement = driver.findElement(By.id("age"));
         String ageValue = "31";
-        ageElement.sendKeys(ageValue);
+        elementMethods.fillElement(ageElement,ageValue);
 
         WebElement salaryElement = driver.findElement(By.id("salary"));
         String salaryValue = "30000";
-        salaryElement.sendKeys(salaryValue);
+        elementMethods.fillElement(salaryElement,salaryValue);
+
 
         WebElement departmentElement = driver.findElement(By.id("department"));
         String departmentValue = "Testing";
-        departmentElement.sendKeys(departmentValue);
+        elementMethods.fillElement(departmentElement,departmentValue);
 
         WebElement submitElement = driver.findElement(By.id("submit"));
-        submitElement.click();
+        elementMethods.clickElement(submitElement);
+
 
         //validam noua dimensiune a tabelului
         List<WebElement> newTableContentList = driver.findElements(By.xpath("//div[@class = 'rt-tbody']/div/div[@class = 'rt-tr -odd' or @class = 'rt-tr -even']"));
@@ -87,40 +95,40 @@ public class WebTableTest {
 
         //function edit
         WebElement editButtonElement = driver.findElement(By.id("edit-record-4"));
-        js.executeScript("arguments[0].click();",editButtonElement);
+        elementMethods.clickJSElement(editButtonElement);
 
         WebElement editFirstNameElement = driver.findElement(By.id("firstName"));
         String editeFirstNameValue = "Sandra";
         editFirstNameElement.clear();
-        editFirstNameElement.sendKeys(editeFirstNameValue);
+        elementMethods.fillElement(editFirstNameElement,editeFirstNameValue);
 
         WebElement editLastNameElement = driver.findElement(By.id("lastName"));
         String editLastNameValue = "Gyebnar";
         editFirstNameElement.clear();
-        editFirstNameElement.sendKeys(editLastNameValue);
+        elementMethods.fillElement(editLastNameElement,editLastNameValue);
 
         WebElement editEmailElement = driver.findElement(By.id("userEmail"));
         String  editeEmailValue= "gyebnar.sandrajss@yahoo.com";
         editEmailElement.clear();
-        editFirstNameElement.sendKeys(editeEmailValue);
+        elementMethods.fillElement(editEmailElement,editeEmailValue);
 
         WebElement editAgeElement = driver.findElement(By.id("age"));
         String editAgeValue = "20 ";
         editAgeElement.clear();
-        editAgeElement.sendKeys(editAgeValue);
+        elementMethods.fillElement(editAgeElement,editAgeValue);
 
         WebElement editSalaryElement = driver.findElement(By.id("salary"));
         String editSalaryValue = "100001";
         editSalaryElement.clear();
-        editSalaryElement.sendKeys(editSalaryValue);
+        elementMethods.fillElement(editSalaryElement,editSalaryValue);
 
         WebElement editDepartmentElement = driver.findElement(By.id("department"));
         String editDepartmentValue = "Testing";
         editDepartmentElement.clear();
-        editDepartmentElement.sendKeys(editDepartmentValue);
+        elementMethods.fillElement(editDepartmentElement,editDepartmentValue);
 
         WebElement editSubmitElement = driver.findElement(By.id("submit"));
-        editSubmitElement.click();
+        elementMethods.clickElement(editSubmitElement);
 
         //validam valorile modificate din tabel
         rowContent = newTableContentList.get(3).getText();
@@ -133,7 +141,7 @@ public class WebTableTest {
 
         //delete function
         WebElement deleteElement = driver.findElement(By.id("delete-record-4"));
-        js.executeScript("arguments[0].click();",deleteElement);
+        elementMethods.clickJSElement(deleteElement);
 
         newTableContentList = driver.findElements(By.xpath("//div[@class = 'rt-tbody']/div/div[class = 'rt-tr -odd'"));
         Assert.assertEquals(newTableContentList.size(),3,"Default size for table is not 3");

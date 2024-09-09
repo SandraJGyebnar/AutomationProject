@@ -1,5 +1,6 @@
 package tests;
 
+import helpMethods.ElementMethods;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -20,40 +21,45 @@ public class PracticeFormTest {
         driver.get("https://demoqa.com/");
         //facem browserul maximise
         driver.manage().window().maximize();
+        ElementMethods elementMethods = new ElementMethods(driver);
 
         //identificarea unui element dupa text - xpath (tag, atribut, valoare) - identificare relativa // sau absoluta /- nu facem absolut (ex://h5[text()= "Elements"])
 
         WebElement formsMenu = driver.findElement(By.xpath("//h5[text()= 'Forms']"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", formsMenu);
+        elementMethods.clickJSElement(formsMenu);
+
 
         WebElement practiceFormSubMenu = driver.findElement(By.xpath("//span[text()='Practice Form']"));
-        js.executeScript("arguments[0].click();", practiceFormSubMenu);
+        elementMethods.clickJSElement(practiceFormSubMenu);
+
 
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
         String firstNameValue = "Sandra";
-        firstNameElement.sendKeys(firstNameValue);
+        elementMethods.fillElement(firstNameElement,firstNameValue);
+
 
         WebElement lastNameElement = driver.findElement(By.id("lastName"));
         String lastNameValue = "Gyebnar";
-        lastNameElement.sendKeys(lastNameValue);
+        elementMethods.fillElement(lastNameElement,lastNameValue);
 
         WebElement userEmailElement = driver.findElement(By.id("userEmail"));
         String userEmailValue = "gsandrajss@gmail.com";
-        userEmailElement.sendKeys(userEmailValue);
+
+        elementMethods.fillElement(userEmailElement,userEmailValue);
 
         List<WebElement> genderOptionsList = driver.findElements(By.xpath("//input[@name='gender']"));
         String genderValue = "Female";
 
         switch (genderValue) {
             case "Male":
-                js.executeScript("arguments[0].click();", genderOptionsList.get(0));
+                elementMethods.clickJSElement(genderOptionsList.get(0));
+
                 break;
             case "Female":
-                js.executeScript("arguments[0].click();", genderOptionsList.get(1));
+                elementMethods.clickJSElement(genderOptionsList.get(1));
                 break;
             case "Other":
-                js.executeScript("arguments[0].click();", genderOptionsList.get(2));
+                elementMethods.clickJSElement(genderOptionsList.get(2));
                 break;
 
 
@@ -66,13 +72,14 @@ public class PracticeFormTest {
         WebElement subjectElement = driver.findElement(By.id("subjectsInput"));
         List<String> subjectValues = Arrays.asList("Accounting", "Maths", "English");
         for (int index = 0; index < subjectValues.size(); index++) {
-            subjectElement.sendKeys(subjectValues.get(index));
-            subjectElement.sendKeys(Keys.ENTER);
+            elementMethods.fillPressElement(subjectElement,subjectValues.get(index),Keys.ENTER);
+
         }
 
         //date of birth
         WebElement dateOfBirthElement = driver.findElement(By.id("dateOfBirthInput"));
-        js.executeScript("arguments[0].click();", dateOfBirthElement);
+        elementMethods.clickJSElement(dateOfBirthElement);
+
 
         WebElement mothElement = driver.findElement(By.className("react-datepicker__month-select"));
         Select monthSelect = new Select(mothElement);
@@ -88,7 +95,8 @@ public class PracticeFormTest {
         List<WebElement> daysList = driver.findElements(By.xpath("//div[@class = 'react-datepicker__month']/div/div[not(contains(@class,'react-datepicker__day--outside-month'))]"));
         for (int index = 0; index < daysList.size(); index ++){
             if (daysList.get(index).getText().equals(dayValue)){
-                daysList.get(index).click();
+
+                elementMethods.clickElement();
                 break;
             }
         }
@@ -99,7 +107,8 @@ public class PracticeFormTest {
         for (int index = 0; index < hobbiesOptionsList.size(); index++) {
             String currentText = hobbiesOptionsList.get(index).getText();
             if (hobbiesValues.contains(currentText)){
-                js.executeScript("arguments[0].click();", hobbiesOptionsList.get(index));
+                elementMethods.clickJSElement(hobbiesOptionsList.get(index));
+
             }
         }
 
@@ -114,7 +123,8 @@ public class PracticeFormTest {
         mobileNumberElement.sendKeys(currentAddressValue);
 
         WebElement stateElement = driver.findElement(By.xpath("//div[text()= 'Select State']"));
-        js.executeScript("arguments[0].click();", stateElement);
+        elementMethods.clickJSElement(stateElement);
+
 
         WebElement stateInputElement = driver.findElement(By.id("react-select-3-input"));
         String stateValue = "NCR";
@@ -123,7 +133,8 @@ public class PracticeFormTest {
         // pentru dropdown am facut metoda asta
 
         WebElement cityElement = driver.findElement(By.xpath("//div[text()= 'Select City']"));
-        js.executeScript("arguments[0].click();", cityElement);
+        elementMethods.clickJSElement(cityElement);
+
 
         WebElement cityInputElement = driver.findElement(By.id("react-select-4-input"));
         String cityValue = "Delhi";
@@ -131,7 +142,8 @@ public class PracticeFormTest {
         cityInputElement.sendKeys(Keys.ENTER);
 
         WebElement submitElement = driver.findElement(By.id("submit"));
-        js.executeScript("arguments[0].click();", submitElement);
+        elementMethods.clickJSElement(submitElement);
+
 
         //validam datele introduse
 
@@ -163,7 +175,9 @@ public class PracticeFormTest {
         Assert.assertEquals(valueList.get(8),currentAddressValue);
         Assert.assertEquals(valueList.get(9),stateValue, cityValue);
 
-        driver.close();
+
+
+        driver.quit();
 
     }
 

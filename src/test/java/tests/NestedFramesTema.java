@@ -1,5 +1,8 @@
 package tests;
 
+import helpMethods.ElementMethods;
+import helpMethods.FrameMethods;
+import helpMethods.TabMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -22,21 +25,27 @@ public class NestedFramesTema {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
+        ElementMethods elementMethods = new ElementMethods(driver);
+        TabMethods tabMethods = new TabMethods(driver);
+        FrameMethods frameMethods = new FrameMethods(driver);
+
         WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", alertsFrameWindowsMenu);
+        elementMethods.clickJSElement(alertsFrameWindowsMenu);
 
 
         WebElement frameSubMenu = driver.findElement(By.xpath("//span[text()='Nested Frames']"));
-        js.executeScript("arguments[0].click();", frameSubMenu);
+        elementMethods.clickJSElement(frameSubMenu);
 
         driver.switchTo().frame("frame1");
 
+
         WebElement childFrameElement = driver.findElement(By.tagName("iFrame"));
-        driver.switchTo().frame(childFrameElement);
+        frameMethods.switchToSpecificIFrameByElement(childFrameElement);
 
         WebElement childSampleTextElement = driver.findElement(By.tagName("p"));
         System.out.println(childSampleTextElement.getText());
+
+        tabMethods.closeCurrentTab();
 
 
     }

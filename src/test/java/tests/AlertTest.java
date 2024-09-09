@@ -30,29 +30,32 @@ public class AlertTest {
         AlertMethods alertMethods = new AlertMethods(driver);
 
         WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", alertsFrameWindowsMenu);
+        elementMethods.clickJSElement(alertsFrameWindowsMenu);
 
         WebElement alertsSubMenu = driver.findElement(By.xpath("//span[text()='Alerts']"));
-        js.executeScript("arguments[0].click();", alertsSubMenu);
+        elementMethods.clickJSElement(alertsSubMenu);
+
 
         WebElement okAlertElement = driver.findElement(By.id("alertButton"));
-        js.executeScript("arguments[0].click();", okAlertElement);
+        elementMethods.clickElement(okAlertElement);
 
         alertMethods.acceptAlert();
 
         WebElement timerAlertButtonElement = driver.findElement(By.id("timerAlertButton"));
-        js.executeScript("arguments[0].click();", timerAlertButtonElement);
+        elementMethods.clickJSElement(timerAlertButtonElement);
+
 
         alertMethods.acceptAlert();
 
         WebElement confirmAlertElement = driver.findElement(By.id("confirmButton"));
-        js.executeScript("arguments[0].click();", confirmAlertElement);
+        elementMethods.clickJSElement(confirmAlertElement);
+
 
         alertMethods.dismissAlert();
 
         WebElement promtAlertElement = driver.findElement(By.id("promtButton"));
-        js.executeScript("arguments[0].click();", promtAlertElement);
+        elementMethods.clickJSElement(promtAlertElement);
+
 
         alertMethods.fillAlert("this is a test");
 

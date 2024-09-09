@@ -1,5 +1,8 @@
 package tests;
 
+import helpMethods.ElementMethods;
+import helpMethods.FrameMethods;
+import helpMethods.TabMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -25,24 +28,25 @@ public class FrameTest {
         //wait implicit
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
+        ElementMethods elementMethods = new ElementMethods(driver);
+        TabMethods tabMethods = new TabMethods(driver);
+        FrameMethods frameMethods = new FrameMethods(driver);
 
         WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].click();", alertsFrameWindowsMenu);
-
+        elementMethods.clickJSElement(alertsFrameWindowsMenu);
 
         WebElement frameSubMenu = driver.findElement(By.xpath("//span[text()='Frames']"));
-        js.executeScript("arguments[0].click();", frameSubMenu);
+        elementMethods.clickJSElement(frameSubMenu);
 
         //ne mutam la iFrame
-        driver.switchTo().frame("frame1");
+        frameMethods.switchToSpecificFrame("frame1");
 
         WebElement sampleTextElement = driver.findElement(By.id("sampleHeading"));
         System.out.println(sampleTextElement.getText());
 
-       driver.switchTo().parentFrame();
+       frameMethods.switchToParentIFrame();
 
-        driver.switchTo().frame("frame2");
+        frameMethods.switchToSpecificFrame("frame2");
 
         WebElement secondSampleTextElement = driver.findElement(By.id("sampleHeading"));
         System.out.println(secondSampleTextElement.getText());
