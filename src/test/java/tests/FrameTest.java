@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
+import pages.HomePage;
 
 import java.time.Duration;
 
@@ -32,8 +33,8 @@ public class FrameTest {
         TabMethods tabMethods = new TabMethods(driver);
         FrameMethods frameMethods = new FrameMethods(driver);
 
-        WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementMethods.clickJSElement(alertsFrameWindowsMenu);
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAlertFrameWindow();
 
         WebElement frameSubMenu = driver.findElement(By.xpath("//span[text()='Frames']"));
         elementMethods.clickJSElement(frameSubMenu);

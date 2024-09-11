@@ -11,6 +11,7 @@ public class AlertMethods {
     public WebDriver driver;
 
     public AlertMethods(WebDriver driver) {
+
         this.driver = driver;
     }
 

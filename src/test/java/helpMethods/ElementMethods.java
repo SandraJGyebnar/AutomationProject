@@ -17,9 +17,8 @@ public class ElementMethods {
     public WebDriver driver;
 
     public ElementMethods(WebDriver driver){
-        this.driver = driver;
+        this.driver=driver;
     }
-
 
     public void clickElement(WebElement element){
         waitVisibleElement(element);
@@ -32,8 +31,6 @@ public class ElementMethods {
         js.executeScript("arguments[0].click();",element);
     }
 
-
-
     public void fillElement(WebElement element, String text){
         waitVisibleElement(element);
         element.sendKeys(text);
@@ -45,7 +42,6 @@ public class ElementMethods {
         element.sendKeys(value);
 
     }
-
 
     public void waitVisibleElement(WebElement element){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
