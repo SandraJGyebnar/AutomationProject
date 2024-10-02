@@ -18,9 +18,15 @@ public class HomePage {
 
     @FindBy(xpath = "//h5[text()='Alerts, Frame & Windows']")
     public WebElement alertsFrameWindowsMenu;
+    @FindBy(xpath = "//h5[text()='Elements']")
+    public WebElement elementsMenu;
 
     public void clickAlertFrameWindow(){
         elementMethods.clickJSElement(alertsFrameWindowsMenu);
+    }
+
+    public void clickElements(){
+        elementMethods.clickJSElement(elementsMenu);
     }
 
 }

@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
+import pages.AlertFrameWindowsPage;
+import pages.FramesPages;
 import pages.HomePage;
 
 import java.time.Duration;
@@ -18,7 +20,6 @@ public class FrameTest {
 
 
     @Test
-
     public void metodaTest() {
         // deschidem un browser
         driver = new EdgeDriver();
@@ -36,30 +37,15 @@ public class FrameTest {
         HomePage homePage = new HomePage(driver);
         homePage.clickAlertFrameWindow();
 
-        WebElement frameSubMenu = driver.findElement(By.xpath("//span[text()='Frames']"));
-        elementMethods.clickJSElement(frameSubMenu);
+        AlertFrameWindowsPage alertFrameWindowsPage = new AlertFrameWindowsPage(driver);
+        alertFrameWindowsPage.clickFramesSubMenu();
 
-        //ne mutam la iFrame
-        frameMethods.switchToSpecificFrame("frame1");
+        FramesPages framesPages = new FramesPages(driver);
+        framesPages.dealFirstFrame();
+        framesPages.dealSecondFrame();
 
-        WebElement sampleTextElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println(sampleTextElement.getText());
-
-       frameMethods.switchToParentIFrame();
-
-        frameMethods.switchToSpecificFrame("frame2");
-
-        WebElement secondSampleTextElement = driver.findElement(By.id("sampleHeading"));
-        System.out.println(secondSampleTextElement.getText());
 
         driver.quit();
-
-        //tema - nested frame
-
-
-
-
-
 
     }
 }

@@ -18,7 +18,6 @@ public class AlertTest {
     public WebDriver driver;
 
     @Test
-
     public void metodaTest() {
         // deschidem un browser
         driver = new EdgeDriver();
@@ -41,9 +40,6 @@ public class AlertTest {
 
         AlertPage alertPage = new AlertPage(driver);
         alertPage.dealAlertProcess("Test");
-
-
-
 
         driver.quit();
 

@@ -18,8 +18,27 @@ public class AlertFrameWindowsPage {
 
     @FindBy(xpath = "//span[text()='Alerts']")
     public WebElement alertsSubmenu;
+    @FindBy(xpath = "//span[text()='Browser Windows']")
+    public WebElement browserWindowSubMenu;
+    @FindBy(xpath = "//span[text()='Frames']")
+    public WebElement frameSubMenu;
+    @FindBy(xpath = "//span[text()='Nested Frames']")
+    public WebElement nestedFrameSubMenu;
+
 
     public void clickAlert(){
         elementMethods.clickJSElement(alertsSubmenu);
+    }
+
+    public void browserWindowsMenu(){
+        elementMethods.clickJSElement(browserWindowSubMenu);
+    }
+
+    public void clickFramesSubMenu(){
+        elementMethods.clickJSElement(frameSubMenu);
+
+    }
+    public void clickNestedFrameSubmenu(){
+        elementMethods.clickJSElement(nestedFrameSubMenu);
     }
 }

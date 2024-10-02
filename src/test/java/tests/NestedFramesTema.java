@@ -9,6 +9,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.Test;
+import pages.AlertFrameWindowsPage;
+import pages.HomePage;
+import pages.NestedFramesPage;
 
 import javax.swing.text.AsyncBoxView;
 import java.time.Duration;
@@ -18,7 +21,6 @@ public class NestedFramesTema {
     public WebDriver driver;
 
     @Test
-
     public void metodaTest() {
         driver =new EdgeDriver();
         driver.get("https://demoqa.com/");
@@ -29,21 +31,21 @@ public class NestedFramesTema {
         TabMethods tabMethods = new TabMethods(driver);
         FrameMethods frameMethods = new FrameMethods(driver);
 
-        WebElement alertsFrameWindowsMenu = driver.findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementMethods.clickJSElement(alertsFrameWindowsMenu);
+        HomePage homePage = new HomePage(driver);
+        homePage.clickAlertFrameWindow();
+
+        AlertFrameWindowsPage alertFrameWindowsPage = new AlertFrameWindowsPage(driver);
+        alertFrameWindowsPage.clickNestedFrameSubmenu();
 
 
-        WebElement frameSubMenu = driver.findElement(By.xpath("//span[text()='Nested Frames']"));
-        elementMethods.clickJSElement(frameSubMenu);
 
-        driver.switchTo().frame("frame1");
+        WebElement nestedFrameSubMenu = driver.findElement(By.xpath("//span[text()='Nested Frames']"));
+        elementMethods.clickJSElement(nestedFrameSubMenu);
 
+        NestedFramesPage nestedFramesPage = new NestedFramesPage(driver);
+        nestedFramesPage.dealFirstNestedFrame();
+        nestedFramesPage.dealSecondNestedFrame();
 
-        WebElement childFrameElement = driver.findElement(By.tagName("iFrame"));
-        frameMethods.switchToSpecificIFrameByElement(childFrameElement);
-
-        WebElement childSampleTextElement = driver.findElement(By.tagName("p"));
-        System.out.println(childSampleTextElement.getText());
 
         tabMethods.closeCurrentTab();
 

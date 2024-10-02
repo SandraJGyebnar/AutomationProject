@@ -18,7 +18,6 @@ public class TabWindowTest {
     public WebDriver driver;
 
     @Test
-
     public void metodaTest() {
 
         // deschidem un browser
