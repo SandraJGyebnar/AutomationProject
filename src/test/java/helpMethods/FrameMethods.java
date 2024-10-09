@@ -2,8 +2,9 @@ package helpMethods;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import sharedData.SharedData;
 
-public class FrameMethods {
+public class FrameMethods extends SharedData {
     public WebDriver driver;
 
     public FrameMethods(WebDriver driver){

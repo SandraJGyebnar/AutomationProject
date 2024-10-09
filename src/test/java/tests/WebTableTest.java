@@ -1,51 +1,32 @@
 package tests;
 
-import helpMethods.ElementMethods;
-import helpMethods.TabMethods;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.ElementsPage;
 import pages.HomePage;
 import pages.WebTablePage;
+import sharedData.SharedData;
 
 import java.util.List;
 
-public class WebTableTest {
-
-    public WebDriver driver;
+public class WebTableTest extends SharedData {
 
     @Test
     public void metodaTest() {
 
-        //deschidem un browser
-        driver = new EdgeDriver();
-        // accesam un URL
-        driver.get("https://demoqa.com/");
-        //facem Browserul maximaze
-        driver.manage().window().maximize();
-
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.clickElements();
 
-        ElementsPage elementsPage = new ElementsPage(driver);
+        ElementsPage elementsPage = new ElementsPage(getDriver());
         elementsPage.clickWebTable();
 
-
-
         //validam dimensiunea initiala a tabelului
-        List<WebElement> tableContentList = driver.findElements(By.xpath("//div[@class = 'rt-tbody']/div/div[@class = 'rt-tr -odd' or @class = 'rt-tr -even']"));
+        List<WebElement> tableContentList = getDriver().findElements(By.xpath("//div[@class = 'rt-tbody']/div/div[@class = 'rt-tr -odd' or @class = 'rt-tr -even']"));
         Assert.assertEquals(tableContentList.size(), 3,"Default size for table is not 3");
 
         //definim un element
-
         String firstNameValue = "Sandra";
         String lastNameValue = "Gyebnar";
         String emailValue = "gyebnar.sandra@yahoo.com";
@@ -53,7 +34,7 @@ public class WebTableTest {
         String salaryValue = "30000";
         String departmentValue = "Testing";
 
-        WebTablePage webTablePage = new WebTablePage(driver);
+        WebTablePage webTablePage = new WebTablePage(getDriver());
         webTablePage.createProcess(firstNameValue,lastNameValue,emailValue,ageValue,salaryValue,departmentValue,3);
 
         String editeFirstNameValue = "Sandra";
@@ -66,8 +47,6 @@ public class WebTableTest {
         webTablePage.editeProcess(editeFirstNameValue,editLastNameValue,editeEmailValue,editAgeValue,editSalaryValue,editDepartmentValue,3);
 
         webTablePage.deleteProcess(3);
-
-        driver.quit();
 
     }
 

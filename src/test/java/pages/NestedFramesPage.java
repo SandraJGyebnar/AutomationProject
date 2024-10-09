@@ -1,32 +1,25 @@
 package pages;
 
-import helpMethods.ElementMethods;
-import helpMethods.FrameMethods;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class NestedFramesPage {
-    public WebDriver driver;
-    public ElementMethods elementMethods;
-    public FrameMethods frameMethods;
+public class NestedFramesPage extends BasePage {
 
-    public NestedFramesPage(WebDriver driver){
-        this.driver = driver;
-        elementMethods = new ElementMethods(this.driver);
-        frameMethods = new FrameMethods(this.driver);
-        PageFactory.initElements(this.driver,this);
+    public NestedFramesPage(WebDriver driver) {
+        super(driver);
     }
 
     @FindBy(xpath = "//h5[text()='Alerts, Frame & Windows']")
-    public WebElement alertsFrameWindowsMenu;
+    private WebElement alertsFrameWindowsMenu;
     @FindBy(xpath = "//span[text()='Nested Frames']")
-    public WebElement frameSubMenu;
+    private WebElement frameSubMenu;
     @FindBy(tagName = "iFrame")
-    public WebElement childFrameElement;
+    private WebElement childFrameElement;
     @FindBy(tagName = "p")
-    public WebElement childSampleTextElement;
+    private WebElement childSampleTextElement;
+
+
 
     public void dealFirstNestedFrame(){
         frameMethods.switchToParentIFrame();
