@@ -5,56 +5,26 @@ import helpMethods.TabMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
+import pages.AlertFrameWindowsPage;
+import pages.HomePage;
+import pages.TabWindowPage;
+import sharedData.Hooks;
 import sharedData.SharedData;
 
-public class TabWindowTest extends SharedData {
+public class TabWindowTest extends Hooks {
 
     @Test
     public void metodaTest() {
 
-        ElementMethods elementMethods = new ElementMethods(getDriver());
-        TabMethods tabMethods = new TabMethods(getDriver());
+            HomePage homePage = new HomePage(getDriver());
+            homePage.clickAlertFrameWindow();
 
-        WebElement alertFrameWindowMenu = getDriver().findElement(By.xpath("//h5[text()='Alerts, Frame & Windows']"));
-        elementMethods.clickJSElement(alertFrameWindowMenu);
+            AlertFrameWindowsPage alertFrameWindowPage = new AlertFrameWindowsPage(getDriver());
+            alertFrameWindowPage.clickAlert();
 
-        WebElement browserWindowsMenu = getDriver().findElement(By.xpath("//span[text()='Browser Windows']"));
-        elementMethods.clickJSElement(browserWindowsMenu);
+            TabWindowPage tabWindowPage = new TabWindowPage(getDriver());
+            tabWindowPage.dealTabProcess();
+            tabWindowPage.dealWindowProcess();
+        }
 
-        WebElement newTabWindow = getDriver().findElement(By.id("tabButton"));
-        elementMethods.clickJSElement(newTabWindow);
-
-        tabMethods.switchSpecificTab(1);
-
-        tabMethods.closeCurrentTab();
-
-        tabMethods.switchSpecificTab(0);
-
-        WebElement newWindowTab = getDriver().findElement(By.id("windowButton"));
-        elementMethods.clickJSElement(newWindowTab);
-
-        tabMethods.switchSpecificTab(1);
-        tabMethods.closeCurrentTab();
-
-        getDriver().quit();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
 }

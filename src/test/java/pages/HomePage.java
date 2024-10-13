@@ -19,14 +19,20 @@ public class HomePage extends BasePage {
 
     public void clickFormsMenu(){
         elementMethods.clickJSElement(formsMenu);
+        loggerUtility.infoLog("The user clicks on Forms menu");
+
     }
 
     public void clickAlertFrameWindow(){
         elementMethods.clickJSElement(alertsFrameWindowsMenu);
+        loggerUtility.infoLog("The user clicks on Alert, Frame & Window menu");
+
     }
 
     public void clickElements(){
         elementMethods.clickJSElement(elementsMenu);
+        loggerUtility.infoLog("The user clicks on Elements menu");
+
     }
 
 }

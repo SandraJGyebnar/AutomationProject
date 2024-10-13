@@ -17,13 +17,19 @@ public class FramesPages extends BasePage {
 
     public void dealFirstFrame(){
         frameMethods.switchToSpecificFrame("frame1");
-        System.out.println(sampleTextElement.getText());
+        loggerUtility.infoLog("The user switches to specific iframe");
+
         frameMethods.switchToParentIFrame();
+        loggerUtility.infoLog("The user interacts with an element within iframe");
+
     }
 
     public void dealSecondFrame(){
         frameMethods.switchToSpecificFrame("frame2");
+        loggerUtility.infoLog("The user switches to specific iframe");
+
         System.out.println(secondSampleTextElement.getText());
+        loggerUtility.infoLog("The user interacts with an element within iframe");
 
     }
 }

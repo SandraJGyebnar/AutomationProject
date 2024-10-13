@@ -1,28 +1,25 @@
 package tests;
 
-import helpMethods.ElementMethods;
-import helpMethods.FrameMethods;
-import helpMethods.TabMethods;
 import org.testng.annotations.Test;
 import pages.AlertFrameWindowsPage;
 import pages.FramesPages;
 import pages.HomePage;
-import sharedData.SharedData;
+import sharedData.Hooks;
 
-public class FrameTest extends SharedData {
+import static java.sql.DriverManager.getDriver;
+
+public class FrameTest extends Hooks {
 
     @Test
     public void metodaTest() {
-
         HomePage homePage = new HomePage(getDriver());
         homePage.clickAlertFrameWindow();
 
-        AlertFrameWindowsPage alertFrameWindowsPage = new AlertFrameWindowsPage(getDriver());
-        alertFrameWindowsPage.clickFramesSubMenu();
+        AlertFrameWindowsPage alertFrameWindowPage = new AlertFrameWindowsPage(getDriver());
+        alertFrameWindowPage.clickFramesSubMenu();
 
-        FramesPages framesPages = new FramesPages(getDriver());
-        framesPages.dealFirstFrame();
-        framesPages.dealSecondFrame();
-
+        FramesPages framesPage = new FramesPages(getDriver());
+        framesPage.dealFirstFrame();
+        framesPage.dealSecondFrame();
     }
 }

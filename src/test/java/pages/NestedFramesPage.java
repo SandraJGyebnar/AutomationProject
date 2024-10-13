@@ -19,17 +19,21 @@ public class NestedFramesPage extends BasePage {
     @FindBy(tagName = "p")
     private WebElement childSampleTextElement;
 
-
-
     public void dealFirstNestedFrame(){
         frameMethods.switchToParentIFrame();
+        loggerUtility.infoLog("The user switches the focus to a specific parent iframe");
+
         System.out.println(childFrameElement.getText());
         frameMethods.switchToParentIFrame();
+        loggerUtility.infoLog("The user switches the focus to a specific child iframe");
+
     }
 
     public void dealSecondNestedFrame(){
         frameMethods.switchToSpecificFrame("p");
         System.out.println(childSampleTextElement.getText());
+        loggerUtility.infoLog("The user interacts with an element within iframe");
+
 
     }
 
