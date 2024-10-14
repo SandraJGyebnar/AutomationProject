@@ -2,13 +2,12 @@ package tests;
 
 import org.testng.annotations.Test;
 import pages.AlertFrameWindowsPage;
-import pages.FramesPages;
 import pages.HomePage;
+import pages.NestedFramesPage;
 import sharedData.Hooks;
+import sharedData.SharedData;
 
-import static java.sql.DriverManager.getDriver;
-
-public class FrameTest extends Hooks {
+public class NestedFramesTest extends Hooks {
 
     @Test
     public void metodaTest() {
@@ -16,10 +15,11 @@ public class FrameTest extends Hooks {
         homePage.clickAlertFrameWindow();
 
         AlertFrameWindowsPage alertFrameWindowPage = new AlertFrameWindowsPage(getDriver());
-        alertFrameWindowPage.clickFramesSubMenu();
+        alertFrameWindowPage.clickNestedFrameSubmenu();
 
-        FramesPages framesPage = new FramesPages(getDriver());
-        framesPage.dealFirstFrame();
-        framesPage.dealSecondFrame();
+        NestedFramesPage nestedFramePage = new NestedFramesPage(getDriver());
+        nestedFramePage.dealFirstNestedFrame();
     }
 }
+
+
