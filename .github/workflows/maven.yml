@@ -9,9 +9,17 @@
 name: ATF Regrgrassion Suite
 
 on:
-  push:
-    branches: [ "master" ]
- 
+  workflow_dispatch:
+    inputs:
+      browser:
+        description: "Choose browser: chrome, edge"
+        required: true
+        default: 'chrome'
+      suite:
+        description: "Choose suite: regressionSuite, smokeSuite"
+        required: true
+        default: "smokeSuite"
+
 
 jobs:
   test:
@@ -27,6 +35,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Run automation tests
-      run: mvn clean install
+      run: mvn clean install -DciCd=true -Dbrowser=${{ github.event.inputs.browser }} -DsuiteXmlFile=suites/${{ github.event.inputs.suite }}.xml -P CustomSuite
 
   

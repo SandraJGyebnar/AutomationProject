@@ -1,28 +1,30 @@
 package sharedData.browserService;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 import java.time.Duration;
 
-public class ChromeService implements BrowserServices {
+public class EdgeServices implements BrowserServices{
+
     private WebDriver driver;
 
     @Override
     public void openBrowser() {
-        ChromeOptions options = prepareOptions();
-        driver = new ChromeDriver(options);
+        EdgeOptions options = prepareOptions();
+        driver = new EdgeDriver(options);
         driver.get("https://demoqa.com/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     @Override
-    public ChromeOptions prepareOptions() {
+    public EdgeOptions prepareOptions() {
         boolean ciCd = Boolean.parseBoolean(System.getProperty("ciCd"));
 
-        ChromeOptions options = new ChromeOptions();
+        EdgeOptions options = new EdgeOptions();
         if (ciCd) {
             options.addArguments("--headless=new"); // Run in headless mode for CI
         }
@@ -35,5 +37,4 @@ public class ChromeService implements BrowserServices {
     public WebDriver getDriver() {
         return driver;
     }
-
 }

@@ -1,18 +1,19 @@
 package sharedData;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import sharedData.browserService.ChromeService;
+import sharedData.browserService.EdgeServices;
 
 public class SharedData {
 
     private WebDriver driver;
 
     public void setUpDriver() {
-        String browser = "edge";
+        String browser = System.getProperty("browser");
 
         switch (browser){
             case "edge":
-                EdgeService edgeService = new EdgeService();
+                EdgeServices edgeService = new EdgeServices();
                 edgeService.openBrowser();
                 driver = edgeService.getDriver();
                 break;
