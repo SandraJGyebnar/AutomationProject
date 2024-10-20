@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       browser:
-        description: "Choose browser: chrome, edge"
+        description: "Choose browser for automation suite: "
         required: true
         default: 'chrome'
         type: choice
@@ -21,7 +21,7 @@ on:
           - edge
 
       suite:
-        description: "Choose suite: regressionSuite, smokeSuite"
+        description: "Choose browser for automation suite: "
         required: true
         default: "smokeSuite"
         type: choice
